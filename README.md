@@ -74,7 +74,7 @@ Copy the Generated URL
 
 
 ### 6. Invite the bot to your server
-Visited the Generated URL you copied in the previous step, and add the bot to a server you own.
+Visit the Generated URL you copied in the previous step, and add the bot to a server you own.
 ![image](https://user-images.githubusercontent.com/84747244/231600360-2350a00b-bcc2-492a-be26-817de0e1d652.png)
 
 When added, your bot should be visible in the sidebar of your server.
