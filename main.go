@@ -28,7 +28,7 @@ func main() {
 	// Create a new Discord session using the provided bot token.
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
-		fmt.Println("Error creating Discord session: ", err)
+		fmt.Println("Error creating Discord session:", err)
 		return
 	}
 
@@ -47,7 +47,7 @@ func main() {
 	}
 
 	// Wait here until CTRL-C or other term signal is received.
-	fmt.Println("Impurgesonator is now running.  Press CTRL-C to exit.")
+	fmt.Printf("Impurgesonator is now running.  Press CTRL-C to exit.\n\n")
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc

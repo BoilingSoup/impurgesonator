@@ -10,7 +10,7 @@ func getCurrentMembers(s *discordgo.Session, event *discordgo.Ready) {
 	for _, guilds := range event.Guilds {
 		err := s.RequestGuildMembers(guilds.ID, "", 0, "", false)
 		if err != nil {
-			fmt.Println("Error requesting guild members: ", err)
+			fmt.Println("Error requesting guild members:", err)
 		}
 	}
 }
@@ -18,13 +18,13 @@ func getCurrentMembers(s *discordgo.Session, event *discordgo.Ready) {
 func checkCurrentMembers(s *discordgo.Session, event *discordgo.GuildMembersChunk) {
 	real, err := s.GuildMember(event.GuildID, doNotImpersonateID)
 	if err != nil {
-		fmt.Println("Error finding the user who must not be impersonated: ", err)
+		fmt.Println("Error finding the user who must not be impersonated:", err)
 		return
 	}
 
 	guild, err := s.Guild(event.GuildID)
 	if err != nil {
-		fmt.Println("Error finding guild: ", err)
+		fmt.Println("Error finding guild:", err)
 		return
 	}
 
@@ -43,7 +43,7 @@ func checkCurrentMembers(s *discordgo.Session, event *discordgo.GuildMembersChun
 
 		err := s.GuildBanCreate(event.GuildID, member.User.ID, 7) // bans user and deletes the last 7 (max) days of comments from this user
 		if err != nil {
-			fmt.Println("Error banning impersonator: ", err)
+			fmt.Println("Error banning impersonator:", err)
 			continue
 		}
 
@@ -51,13 +51,14 @@ func checkCurrentMembers(s *discordgo.Session, event *discordgo.GuildMembersChun
 		count++
 	}
 
-	fmt.Printf("Initial search complete. Banned %d users.\n", count)
+	fmt.Printf("Initial search complete. Banned %d users.\n\n", count)
+	fmt.Printf("Listening for name changes and new joins...\n")
 }
 
 func checkMemberUpdateEvent(s *discordgo.Session, event *discordgo.GuildMemberUpdate) {
 	real, err := s.GuildMember(event.GuildID, doNotImpersonateID)
 	if err != nil {
-		fmt.Println("Error finding the user who must not be impersonated: ", err)
+		fmt.Println("Error finding the user who must not be impersonated:", err)
 		return
 	}
 
@@ -72,22 +73,21 @@ func checkMemberUpdateEvent(s *discordgo.Session, event *discordgo.GuildMemberUp
 
 	err = s.GuildBanCreate(event.GuildID, event.Member.User.ID, 7) // bans user and deletes the last 7 (max) days of comments from this user
 	if err != nil {
-		fmt.Println("Error banning impersonator: ", err)
+		fmt.Println("Error banning impersonator:", err)
 		return
 	}
 
-	fmt.Println("Banned ", event.Member.User.String())
+	fmt.Println("Banned", event.Member.User.String())
 }
 
 func checkNewMemberJoin(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
 	real, err := s.GuildMember(event.GuildID, doNotImpersonateID)
 	if err != nil {
-		fmt.Println("Error finding the user who must not be impersonated: ", err)
+		fmt.Println("Error finding the user who must not be impersonated:", err)
 		return
 	}
 
 	if !isCaseInsensitiveNameMatch(event.Member, real) {
-		fmt.Println(event.Member.Nick)
 		return
 	}
 
@@ -97,9 +97,9 @@ func checkNewMemberJoin(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
 
 	err = s.GuildBanCreate(event.GuildID, event.Member.User.ID, 7) // bans user and deletes the last 7 (max) days of comments from this user
 	if err != nil {
-		fmt.Println("Error banning impersonator: ", err)
+		fmt.Println("Error banning impersonator:", err)
 		return
 	}
 
-	fmt.Println("Banned ", event.Member.User.String())
+	fmt.Println("Banned", event.Member.User.String())
 }
