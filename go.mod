@@ -1,4 +1,4 @@
-module github.com/BoilingSoup/discord-impurgesonator
+module github.com/BoilingSoup/impurgesonator
 
 go 1.20
 
