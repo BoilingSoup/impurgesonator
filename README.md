@@ -1,6 +1,6 @@
 # Contents
-- <a href="https://github.com/BoilingSoup/impurgesonator#overview">Overview</a>
-- <a href="https://github.com/BoilingSoup/impurgesonator#how-to-use">How to Use</a>
+- <a href="#user-content-overview">Overview</a>
+- <a href="#user-content-how-to-use">How to Use</a>
 
 # Overview
 Impurgesonator takes a Discord User's ID for the `-u` flag. Then Impurgesonator will check for impersonators in every server where you have invited the Bot.
