@@ -63,7 +63,6 @@ func checkMemberUpdateEvent(s *discordgo.Session, event *discordgo.GuildMemberUp
 	}
 
 	if !isCaseInsensitiveNameMatch(event.Member, real) {
-		fmt.Println(event.Member.Nick)
 		return
 	}
 
