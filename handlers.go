@@ -28,7 +28,7 @@ func checkCurrentMembers(s *discordgo.Session, event *discordgo.GuildMembersChun
 		return
 	}
 
-	fmt.Printf("Searching server %q for impersonators of %+v\n", guild.Name, real.User.String())
+	fmt.Printf("Searching server %q for impersonators of %v\n", guild.Name, real.User.String())
 
 	var count int
 	for _, member := range event.Members {
