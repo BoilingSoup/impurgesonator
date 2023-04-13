@@ -116,6 +116,6 @@ You should also now see that the bot is Online in your server.
 ![image](https://user-images.githubusercontent.com/84747244/231603342-f0ba3274-0d23-4b7f-9f57-38fefd96ffb1.png)
 
 
-Done! The bot will ban users that change their Username or Nickname to fit the imposter criteria. 
+Done! The bot will ban users that change their Username or Nickname to fit the impersonator criteria. 
 
-And it will also ban new members that join the server and fit the imposter criteria.
+And it will also ban new members that join the server and fit the impersonator criteria.
